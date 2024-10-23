@@ -51,8 +51,8 @@ RUN julia install_packages.jl
 # Create a non-root user and set permissions
 RUN adduser --disabled-password --gecos '' scientist && \
     mkdir -p /home/scientist && \
-    chown -R scientist:scientist /home/scientist /usr/src/app /usr/local /workspaces
-
+    chown -R scientist:scientist /home/scientist /usr/src/app /usr/local
+    
 # Set the user
 USER scientist
 

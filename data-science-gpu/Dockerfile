@@ -26,11 +26,17 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Install juliaup
-# RUN curl -fsSL https://install.julialang.org | sh -s -- --yes
+RUN curl -fsSL https://install.julialang.org | sh -s -- --yes
 
 # Install Julia packages
 # COPY install_packages.jl .
 # RUN julia install_packages.jl
+
+# ENV JULIA_DEPOT_PATH="/usr/local/julia"
+
+# Enable Julia notebook development
+# RUN julia -e 'using Pkg; Pkg.add("IJulia");' && \
+#     julia -e 'using IJulia; notebook()'
 
 # Create a non-root user and set permissions
 RUN adduser --disabled-password --gecos '' scientist && \

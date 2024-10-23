@@ -1,0 +1,24 @@
+{
+    "name": "Data Science GPU Container",
+    "image": "data-science-gpu:latest",
+    "workspaceFolder": "/workspaces",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "julialang.language-julia",
+                "ms-python.python",
+                "reditorsupport.r",
+                "ms-toolsai.jupyter"
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "r.rpath.linux": "/usr/bin/R"
+            }
+        }
+    },
+    "runArgs": [
+        "--gpus",
+        "all"
+    ],
+    "forwardPorts": [8888, 6006]
+}

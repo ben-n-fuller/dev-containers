@@ -1,0 +1,21 @@
+{
+    "name": "Data Science Container",
+    "image": "data-science:latest",
+    "workspaceFolder": "/workspaces",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "julialang.language-julia",
+                "ms-python.python",
+                "reditorsupport.r",
+                "ms-toolsai.jupyter"
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "python.defaultInterpreterPath": "/opt/miniconda3/bin/python",
+                "r.rpath.linux": "/usr/bin/R"
+            }
+        }
+    },
+    "forwardPorts": [8888]
+}
