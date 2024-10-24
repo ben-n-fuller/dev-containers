@@ -33,7 +33,9 @@ To use the dev containers:
 1. Build the `data-science-jupyter` image
 2. Run `docker run -p 8888:8888 data-science-lab`
 
-## Add Packages
+## Default Packages
+The list of default packages installed in the container for each language can be modified in the corresponding installer file.
+
 | Language | Package |
 |-|-|
 | Julia | `install_packages.jl` |
