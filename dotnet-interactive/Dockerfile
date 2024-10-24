@@ -26,7 +26,7 @@ ENV PATH="/usr/local/miniconda3/bin:$PATH"
 RUN conda install -y jupyter
 
 # Install .NET kernel
-RUN dotnet tool install -g --add-source "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json" Microsoft.dotnet-interactive
+RUN dotnet tool install --global Microsoft.dotnet-interactive --version 1.0.522904
 ENV PATH="/home/developer/.dotnet/tools:${PATH}"
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
 RUN dotnet interactive jupyter install
