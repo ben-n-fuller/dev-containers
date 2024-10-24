@@ -48,7 +48,7 @@ ENV PATH="/home/scientist/.juliaup/bin:$PATH"
 COPY install_packages.jl .
 RUN julia install_packages.jl
 
-# Expose port for TensorBoard (optional)
+# Expose port for TensorBoard
 EXPOSE 6006
 
 # Expose Jupyter
