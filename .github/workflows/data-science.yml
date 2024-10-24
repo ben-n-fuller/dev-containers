@@ -14,5 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
+    
+    - name: Build Data Science image
       run: docker build -f data-science/Dockerfile -t data-science:latest .
+
+    - name: Build Data Science GPU image
+      run: docker build -f data-science-gpu/Dockerfile -t data-science-gpu:latest .
