@@ -12,7 +12,7 @@ This repository includes Dockerfiles and template `devcontainer.json` definition
 To use the dev containers:
 - Install Docker (and Docker Desktop if using Windows)
 - Build the required images
-- Copy the `devcontainer.*.json` file into `.devcontainers/devcontainer.json` in the target project
+- Copy the `devcontainer.*.json` file corresponding with the desired image into `.devcontainers/devcontainer.json` in the target project
 
 ## Build
 | Image | Command |
