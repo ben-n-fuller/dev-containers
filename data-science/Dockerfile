@@ -1,4 +1,4 @@
-FROM julia:1.10.5
+FROM julia:latest
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
@@ -23,9 +23,6 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 # Add Conda to the path
 ENV PATH="/opt/miniconda3/bin:$PATH"
 
-# Install Jupyter Lab
-RUN conda install -y -c conda-forge jupyterlab jupyterlab-lsp jedi-language-server
-
 # Install additional python requirements
 COPY requirements.txt .
 RUN pip install -r requirements.txt
@@ -38,16 +35,6 @@ RUN pip install ipykernel && \
 COPY install_packages.R .
 RUN Rscript install_packages.R
 
-ENV JULIA_DEPOT_PATH="/usr/local/julia"
-
-# Enable Julia notebook development
-RUN julia -e 'using Pkg; Pkg.add("IJulia");' && \
-    julia -e 'using IJulia; notebook()'
-
-# Install Julia packages
-COPY install_packages.jl .
-RUN julia install_packages.jl
-
 # Create a non-root user and set permissions
 RUN adduser --disabled-password --gecos '' scientist && \
     mkdir -p /home/scientist && \
@@ -56,9 +43,13 @@ RUN adduser --disabled-password --gecos '' scientist && \
 # Set the user
 USER scientist
 
-# Add Conda to the path
-ENV PATH="/opt/miniconda3/bin:$PATH"
-ENV JULIA_DEPOT_PATH="/usr/local/julia"
+# Enable Julia notebook development
+RUN julia -e 'using Pkg; Pkg.add("IJulia");' && \
+    julia -e 'using IJulia; notebook()'
+
+# Install Julia packages
+COPY install_packages.jl .
+RUN julia install_packages.jl
 
 # Expose the default port for Jupyter Lab
 EXPOSE 8888
