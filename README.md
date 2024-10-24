@@ -1,5 +1,5 @@
 # Overview
-This repository includes Dockerfiles and template `devcontainer.json` definitions to simplify data science dev container environments. 
+This repository includes Dockerfiles and template `devcontainer.json` definitions for containerized data science and .NET development. 
 
 # Containers
 | Name | Description |
