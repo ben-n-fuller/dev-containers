@@ -1,5 +1,5 @@
 packages <- c(
-  'IRkernel'
+  'IRkernel',
   'rmarkdown',
   'languageserver',
   'tidyverse',
