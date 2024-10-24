@@ -1,0 +1,20 @@
+{
+    "name": "Dotnet Interactive",
+    "image": "dotnet-interactive:latest",
+    "workspaceFolder": "/workspaces",
+    "forwardPorts": [8888],
+	"customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-toolsai.jupyter",
+                "ms-dotnettools.csharp",
+                "ms-dotnettools.csdevkit"
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "python.defaultInterpreterPath": "/opt/miniconda3/bin/python"
+			
+			}
+        }
+    }
+}
