@@ -5,7 +5,7 @@ This repository includes Dockerfiles and template `devcontainer.json` definition
 | Name | Description |
 |-|-|
 | Data Science | Base container with Julia, R, and Python and default packages for each|
-| Data Science (GPU) | Container with Julia, R, and Python as well as Tensorflow with GPU acceleration |
+| Data Science (GPU) | Container with Julia, R, and Python with Tensorflow GPU acceleration |
 | Jupyter Lab | Runs the Data Science container as a Jupyter lab instance |
 | Dotnet Interactive | Dotnet C# and F# Jupyter notebooks |
 
