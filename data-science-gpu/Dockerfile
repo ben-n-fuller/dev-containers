@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 
 # Install ipykernel
 RUN pip install --upgrade pip \
-    && pip install jupyterlab ipykernel \
+    && pip install jupyterlab jupyterlab-lsp ipykernel \
     && pip install 'python-language-server[all]' \
     && python -m ipykernel install --sys-prefix
 
@@ -25,26 +25,28 @@ RUN pip install --upgrade pip \
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# Install juliaup
-RUN curl -fsSL https://install.julialang.org | sh -s -- --yes
-
-# Install Julia packages
-# COPY install_packages.jl .
-# RUN julia install_packages.jl
-
-# ENV JULIA_DEPOT_PATH="/usr/local/julia"
-
-# Enable Julia notebook development
-# RUN julia -e 'using Pkg; Pkg.add("IJulia");' && \
-#     julia -e 'using IJulia; notebook()'
+# Install IRKernel and other R packages
+COPY install_packages.R .
+RUN Rscript install_packages.R
 
 # Create a non-root user and set permissions
 RUN adduser --disabled-password --gecos '' scientist && \
     mkdir -p /home/scientist && \
-    chown -R scientist:scientist /home/scientist /usr/src/app /usr/local /workspaces
+    chown -R scientist:scientist /home/scientist /usr/src/app /usr/local
 
 # Set the user
 USER scientist
+
+# Install juliaup
+RUN curl -fsSL https://install.julialang.org -o ~/juliup.sh && \
+    bash ~/juliup.sh --yes && \
+    rm ~/juliup.sh
+
+ENV PATH="/home/scientist/.juliaup/bin:$PATH"
+
+# Install Julia packages
+COPY install_packages.jl .
+RUN julia install_packages.jl
 
 # Expose port for TensorBoard (optional)
 EXPOSE 6006
