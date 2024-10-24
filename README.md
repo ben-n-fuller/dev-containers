@@ -32,3 +32,10 @@ To use the dev containers:
 ### Jupyter Lab
 1. Build the `data-science-jupyter` image
 2. Run `docker run -p 8888:8888 data-science-lab`
+
+## Add Packages
+| Language | Package |
+|-|-|
+| Julia | `install_packages.jl` |
+| Python | `requirements.txt` |
+| R | `install_packages.R` |
