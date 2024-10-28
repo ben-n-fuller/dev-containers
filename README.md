@@ -6,8 +6,8 @@ The LaTex container is based on the VSCode Workshop container [example from Jame
 # Containers
 | Name | Description |
 |-|-|
-| Data Science | Base container with Julia, R, and Python and default packages for each|
-| Data Science (GPU) | Container with Julia, R, and Python with Tensorflow GPU acceleration |
+| Data Science | Julia, R, and Python and default packages for each |
+| Data Science (GPU) | Julia, R, and Python with Tensorflow GPU acceleration |
 | Jupyter Lab | Runs the Data Science container as a Jupyter lab instance |
 | Dotnet Interactive | Dotnet C# and F# Jupyter notebooks |
 | LaTex Live | Tools for editing and compiling LaTex documents with the VS Code LaTex Workshop extension |
