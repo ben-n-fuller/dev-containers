@@ -1,6 +1,8 @@
 # Overview
 This repository includes Dockerfiles and template `devcontainer.json` definitions for containerized data science and .NET development. 
 
+The LaTex container is based on the VSCode Workshop container [example from James Yu](https://github.com/James-Yu/LaTeX-Workshop/tree/master/samples/docker).
+
 # Containers
 | Name | Description |
 |-|-|
