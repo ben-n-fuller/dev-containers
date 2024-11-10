@@ -1,58 +1,69 @@
 # Use the official TensorFlow GPU base image
-FROM tensorflow/tensorflow:latest-gpu
+FROM tensorflow/tensorflow:latest-gpu-jupyter
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Install Linux dependencies
+# Install dependencies for Jupyter Lab
 RUN apt-get update && apt-get install -y \
     wget \
     curl \
     git \
     r-base \
+    python3-dev \
     libcurl4-openssl-dev \
     libssl-dev \
     libxml2-dev \
     libgit2-dev
+    
+# Create the user
+RUN groupadd --gid 1001 scientist \
+    && useradd --uid 1001 --gid 1001 -m scientist \
+    && apt-get update \
+    && apt-get install -y sudo \
+    && echo scientist ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/scientist \
+    && chmod 0440 /etc/sudoers.d/scientist \
+    && chown -R scientist:scientist /usr/src/app /usr/local
+    
+# Set the user
+USER scientist
 
-# Install ipykernel
-RUN pip install --upgrade pip \
-    && pip install jupyterlab jupyterlab-lsp ipykernel \
-    && pip install 'python-language-server[all]' \
-    && python -m ipykernel install --sys-prefix
+# Install Miniconda
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    bash ~/miniconda.sh -b -p ~/miniconda3 && \
+    rm ~/miniconda.sh
 
-# Install additional python packages
+# Add Conda to the path
+ENV PATH="/home/scientist/miniconda3/bin:$PATH"
+
+RUN conda install -y notebook
+
+# Install Julia
+RUN curl -fsSL https://install.julialang.org | sh -s -- -y
+
+# Add Julia to the path
+ENV PATH="/home/scientist/.juliaup/bin:$PATH"
+
+# Create default environment and start notebook
+RUN mkdir -p /home/scientist/.julia/environments/default
+
+# Copy the project file, install dependencies, and attach Jupyter notebooks for Julia
+# COPY Project.toml /home/scientist/.julia/environments/default/Project.toml
+# COPY Manifest.toml /home/scientist/.julia/environments/default/Manifest.toml
+# RUN julia -e 'using Pkg; Pkg.activate("/home/scientist/.julia/environments/default"); Pkg.instantiate(); Pkg.precompile(); using IJulia; notebook(detached=true)'
+
+# Install additional python requirements
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Install IRKernel and other R packages
-COPY install_packages.R .
-RUN Rscript install_packages.R
-
-# Create a non-root user and set permissions
-RUN adduser --disabled-password --gecos '' scientist && \
-    mkdir -p /home/scientist && \
-    chown -R scientist:scientist /home/scientist /usr/src/app /usr/local
-
-# Set the user
-USER scientist
-
-# Install juliaup
-RUN curl -fsSL https://install.julialang.org -o ~/juliup.sh && \
-    bash ~/juliup.sh --yes && \
-    rm ~/juliup.sh
-
-ENV PATH="/home/scientist/.juliaup/bin:$PATH"
-
-# Install Julia packages
-COPY install_packages.jl .
-RUN julia install_packages.jl
-
-# Expose port for TensorBoard
-EXPOSE 6006
+# COPY requirements.R .
+# RUN Rscript requirements.R
 
 # Expose Jupyter
 EXPOSE 8888
 
-# Define default command
+# Expose tensorboard
+EXPOSE 6006
+
 CMD ["bash"]

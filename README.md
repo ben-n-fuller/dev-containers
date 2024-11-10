@@ -11,7 +11,6 @@ The LaTex container is based on the VSCode Workshop container [example from Jame
 |-|-|
 | Data Science | Julia, R, and Python and default packages for each |
 | Data Science (GPU) | Julia, R, and Python with Tensorflow GPU acceleration |
-| Jupyter Lab | Runs the Data Science container as a Jupyter lab instance |
 | Dotnet Interactive | Dotnet C# and F# Jupyter notebooks |
 | LaTex Live | Tools for editing and compiling LaTex documents with the VS Code LaTex Workshop extension |
 
@@ -26,7 +25,6 @@ To use the dev containers:
 |-|-|
 | `data-science` | `docker build -t data-science-gpu:latest -f data-science-gpu/Dockerfile .` |
 | `data-science-gpu` | `docker build -t data-science:latest -f data-science/Dockerfile .` |
-| `data-science-lab` | `docker build -t data-science-lab:latest -f jupyter-lab/Dockerfile .` |
 | `dotnet-interactive` | `docker build -t dotnet-interactive:latest -f dotnet-interactive/Dockerfile .` |
 | `tex-live` | `docker build -t tex-live:latest -f tex-live/Dockerfile .` |
 

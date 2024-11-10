@@ -1,4 +1,4 @@
-FROM julia:latest
+FROM ubuntu:latest
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
@@ -14,44 +14,51 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libxml2-dev \
     libgit2-dev
+    
+# Create the user
+RUN groupadd --gid 1001 scientist \
+    && useradd --uid 1001 --gid 1001 -m scientist \
+    && apt-get update \
+    && apt-get install -y sudo \
+    && echo scientist ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/scientist \
+    && chmod 0440 /etc/sudoers.d/scientist \
+    && chown -R scientist:scientist /usr/src/app /usr/local
+    
+# Set the user
+USER scientist
 
 # Install Miniconda
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-    bash ~/miniconda.sh -b -p /opt/miniconda3 && \
+    bash ~/miniconda.sh -b -p ~/miniconda3 && \
     rm ~/miniconda.sh
 
 # Add Conda to the path
-ENV PATH="/opt/miniconda3/bin:$PATH"
+ENV PATH="/home/scientist/miniconda3/bin:$PATH"
+
+RUN conda install -y notebook
+
+# Install Julia
+RUN curl -fsSL https://install.julialang.org | sh -s -- -y
+
+# Add Julia to the path
+ENV PATH="/home/scientist/.juliaup/bin:$PATH"
+
+# Create default environment and start notebook
+RUN mkdir -p /home/scientist/.julia/environments/default
+
+# Copy the project file, install dependencies, and attach Jupyter notebooks for Julia
+COPY Project.toml /home/scientist/.julia/environments/default/Project.toml
+COPY Manifest.toml /home/scientist/.julia/environments/default/Manifest.toml
+RUN julia -e 'using Pkg; Pkg.activate("/home/scientist/.julia/environments/default"); Pkg.instantiate(); Pkg.precompile(); using IJulia; notebook(detached=true)'
 
 # Install additional python requirements
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# Install ipykernel and register it with Jupyter before switching to non-root
-RUN pip install ipykernel && \
-    python -m ipykernel install --sys-prefix
-
 # Install IRKernel and other R packages
-COPY install_packages.R .
-RUN Rscript install_packages.R
+COPY requirements.R .
+RUN Rscript requirements.R
 
-# Create a non-root user and set permissions
-RUN adduser --disabled-password --gecos '' scientist && \
-    mkdir -p /home/scientist && \
-    chown -R scientist:scientist /home/scientist /usr/src/app /usr/local
-    
-# Set the user
-USER scientist
-
-# Enable Julia notebook development
-RUN julia -e 'using Pkg; Pkg.add("IJulia");' && \
-    julia -e 'using IJulia; notebook()'
-
-# Install Julia packages
-COPY install_packages.jl .
-RUN julia install_packages.jl
-
-# Expose the default port for Jupyter Lab
 EXPOSE 8888
 
 CMD ["bash"]
