@@ -4,7 +4,7 @@ This repository includes Dockerfiles and template `devcontainer.json` definition
 The LaTex container is based on the VSCode Workshop container [example from James Yu](https://github.com/James-Yu/LaTeX-Workshop/tree/master/samples/docker).
 
 # Prerequisites
-- [Docker Engine for Linux](https://docs.docker.com/engine/install/) or
+- [Docker Engine for Linux](https://docs.docker.com/engine/install/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) if using Windows or Mac
 
 # Containers
