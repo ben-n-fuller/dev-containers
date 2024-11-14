@@ -5,7 +5,7 @@ The LaTex container is based on the VSCode Workshop container [example from Jame
 
 # Prerequisites
 - [Docker Engine for Linux](https://docs.docker.com/engine/install/)
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) if using Windows or Mac
+- [Docker Desktop for Windows or Mac](https://www.docker.com/products/docker-desktop/)
 
 # Containers
 | Name | Description |
