@@ -17,7 +17,7 @@ The LaTex container is based on the VSCode Workshop container [example from Jame
 
 # Usage
 To use the dev containers:
-- Install Docker (and Docker Desktop if using Windows)
+- Install Docker (and [Docker Desktop](https://www.docker.com/products/docker-desktop/) if using Windows)
 - Build the required image (described below)
 - Copy the `devcontainer.json` and `Dockerfile` files corresponding with the desired container into `.devcontainers/` at the root of the target project
 
