@@ -21,6 +21,12 @@ To use the dev containers:
 - Build the required image (described below)
 - Copy the `devcontainer.json` and `Dockerfile` files corresponding with the desired container into `.devcontainers/` at the root of the target project
 
+## Run
+### VS Code
+1. Press `Ctrl+Shift+P` and search for `Dev Containers: Open Folder in Container`
+2. Open the container and choose the project root
+3. VS Code will launch a new window with your project running in the dev container 
+
 ## Build
 | Image | Command |
 |-|-|
@@ -29,12 +35,6 @@ To use the dev containers:
 | `data-science-lab` | `docker build -t data-science-lab:latest -f jupyter-lab/Dockerfile .` |
 | `dotnet-interactive` | `docker build -t dotnet-interactive:latest -f dotnet-interactive/Dockerfile .` |
 | `tex-live` | `docker build -t tex-live:latest -f tex-live/Dockerfile .` |
-
-## Run
-### VS Code
-1. Press `Ctrl+Shift+P` and search for `Dev Containers: Open Folder in Container`
-2. Open the container and choose the project root
-3. VS Code will launch a new window with your project running in the dev container 
 
 ### Jupyter Lab
 1. Build the `data-science-jupyter` image
