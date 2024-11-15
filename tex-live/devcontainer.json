@@ -1,6 +1,6 @@
 {
     "name": "TeX Live Base",
-    "image": "tex-live",
+    "image": "ghcr.io/ben-n-fuller/dev-containers/tex-live:main",
     "customizations": {
         "vscode": {
             "extensions": [

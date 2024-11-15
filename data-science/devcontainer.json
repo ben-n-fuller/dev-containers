@@ -1,9 +1,6 @@
 {
-	"name": "Industrial Statistics Lab",
-	"build": {
-        "dockerfile": "Dockerfile",
-        "context": ".."
-    },
+	"name": "Data Science Lab",
+	"image": "ghcr.io/ben-n-fuller/dev-containers/data-science:main",
 	"customizations": {
 		"vscode": {
 			"extensions": [

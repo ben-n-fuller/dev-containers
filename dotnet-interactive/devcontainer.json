@@ -1,6 +1,6 @@
 {
     "name": "Dotnet Interactive",
-    "image": "dotnet-interactive:latest",
+    "image": "ghcr.io/ben-n-fuller/dev-containers/dotnet-interactive:main",
     "workspaceFolder": "/workspaces",
     "forwardPorts": [8888],
 	"customizations": {
