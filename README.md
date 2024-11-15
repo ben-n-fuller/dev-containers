@@ -18,7 +18,7 @@ The LaTex container is based on the VSCode Workshop container [example from Jame
 # Usage
 ## Open Project in Container
 1. Copy the `devcontainer.json` file corresponding to the desired container into `.devcontainers/` at the root of the target project
-2. Press `Ctrl+Shift+P` and search for `Dev Containers: Open Folder in Container`
+2. Open the folder in VS Code and press `Ctrl+Shift+P` to find `Dev Containers: Open Folder in Container`
 3. Open the container and choose the project root
 4. VS Code will launch a new window with your project running in the dev container 
 
