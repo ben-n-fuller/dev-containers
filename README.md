@@ -11,7 +11,7 @@ The LaTex container is based on the VSCode Workshop container [example from Jame
 | Name | Description |
 |-|-|
 | Data Science | Jupyter support for Julia, R, and Python with default packages for each |
-| Data Science (GPU) | Jupyter support for Julia, R, and Python with Tensorflow GPU acceleration |
+| Data Science (GPU) | Jupyter support for Julia, R, and Python with Tensorflow & Pytorch GPU acceleration |
 | Dotnet Interactive | Dotnet C# and F# Jupyter notebooks |
 | Tex Live | Tools for editing and compiling LaTex documents |
 
