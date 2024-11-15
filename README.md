@@ -13,11 +13,16 @@ The LaTex container is based on the VSCode Workshop container [example from Jame
 | Data Science | Jupyter support for Julia, R, and Python with default packages for each |
 | Data Science (GPU) | Jupyter support for Julia, R, and Python with Tensorflow GPU acceleration |
 | Dotnet Interactive | Dotnet C# and F# Jupyter notebooks |
-| LaTex Live | Tools for editing and compiling LaTex documents |
+| Tex Live | Tools for editing and compiling LaTex documents |
 
 # Usage
-## VS Code
+## Open Project in Container
 1. Copy the `devcontainer.json` file corresponding to the desired container into `.devcontainers/` at the root of the target project
 2. Press `Ctrl+Shift+P` and search for `Dev Containers: Open Folder in Container`
 3. Open the container and choose the project root
 4. VS Code will launch a new window with your project running in the dev container 
+
+## Jupyter Notebooks
+1. In VS Code, type `Ctrl+Shift+P` to open the command palette
+2. Search for `Create: New Jupyter notebook`
+3. In the top right, choose the kernel. Choose from `julia 1.x.x` (not release channel), `base (python 3.x.x)` (not other kernels), or `R`

@@ -7,6 +7,8 @@ RUN apt install -y --no-install-recommends wget && \
     apt autoremove -y && \
     apt clean
 
+RUN apt-get update && apt-get install -y acl
+
 # Create a non-root user and set permissions
 RUN adduser --disabled-password --gecos '' developer && \
     mkdir -p /home/developer && \

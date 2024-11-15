@@ -16,5 +16,6 @@
 			
 			}
         }
-    }
+    },
+    "postAttachCommand": "sudo setfacl -R -m u:developer:rwx /workspaces"
 }

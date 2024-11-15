@@ -13,5 +13,6 @@
                 "editor.formatOnSave": true
             }
         }
-    }
+    },
+    "postAttachCommand": "sudo setfacl -R -m u:scientist:rwx /workspaces"
 }
