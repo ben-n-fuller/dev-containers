@@ -15,7 +15,8 @@ RUN apt-get update && apt-get -y upgrade \
     texlive-latex-extra \
     biber chktex latexmk make python3-pygments python3-pkg-resources \
     texlive-bibtex-extra \
-    texlive-lang-english
+    texlive-lang-english \
+    acl
 
 # latexindent modules
 RUN apt-get install --no-install-recommends -y curl
@@ -32,3 +33,16 @@ RUN apt-get autoremove -y \
 ENV DEBIAN_FRONTEND=dialog \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
+
+# Create the user
+RUN groupadd --gid 1001 scientist \
+    && useradd --uid 1001 --gid 1001 -m scientist \
+    && apt-get update \
+    && apt-get install -y sudo \
+    && echo scientist ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/scientist \
+    && chmod 0440 /etc/sudoers.d/scientist
+    
+# Set the user
+USER scientist
+
+CMD ["bash"]
