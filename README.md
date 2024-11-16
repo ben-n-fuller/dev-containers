@@ -26,3 +26,7 @@ The LaTex container is based on the VSCode Workshop container [example from Jame
 1. In VS Code, type `Ctrl+Shift+P` to open the command palette
 2. Search for `Create: New Jupyter notebook`
 3. In the top right, choose the kernel. Choose from `julia 1.x.x` (not release channel), `base (python 3.x.x)` (not other kernels), or `R`
+   
+## GPU Acceleration
+Install the [NVIDIA container toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) before launching the container.
+
