@@ -5,11 +5,12 @@ name: data-science
 # separate terms of service, privacy policy, and support
 # documentation.
 
-on:
+on: 
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 env:
   # Use docker.io for Docker Hub if empty
