@@ -20,5 +20,4 @@ asyncio
 uvicorn[standard]
 joblib
 fastapi
-tensorflow[and-cuda]
-torch
+tensorflow[and-cuda]-
