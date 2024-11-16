@@ -6,6 +6,8 @@ name: dotnet
 # documentation.
 
 on:
+  push:
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
