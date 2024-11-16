@@ -21,3 +21,4 @@ uvicorn[standard]
 joblib
 fastapi
 tensorflow[and-cuda]
+torch
