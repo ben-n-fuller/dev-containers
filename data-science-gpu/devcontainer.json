@@ -18,6 +18,7 @@
 			],
             "settings": {
                 "terminal.integrated.defaultProfile.linux": "bash",
+		"julia.environmentPath": "/home/scientist/.julia/environments/default",
                 "r.rpath.linux": "/usr/bin/R"
             }
         }
