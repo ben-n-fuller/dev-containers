@@ -64,8 +64,8 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Install IRKernel and other R packages
-# COPY requirements.R .
-# RUN Rscript requirements.R
+COPY requirements.R .
+RUN Rscript requirements.R
 
 # Expose the port
 EXPOSE 8888
